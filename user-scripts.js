@@ -16,6 +16,7 @@ var EventHandlers = (function () {
         $("#change-password-button").click(UserManager.changePasswordPop);
         $("#close-change-password").click(UserManager.changePasswordClose);
         $("#make-change-request").click(UserManager.changeUserPassword);
+
     }
 
 
@@ -27,10 +28,9 @@ var EventHandlers = (function () {
 
 
 function goToTravelTodo() {
-    console.log("TravelTODO");
-    window.open("todomain.html")
-    //Apply code to continue to travels
-    //Make connection with Jonas page
+    //console.log("TravelTODO");
+    window.open("todomain.html");
+
 }
 
 function signOut() {

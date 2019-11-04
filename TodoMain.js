@@ -11,7 +11,7 @@ function MasterIDHandler(shouldAdd) {
 
 //This is what makes up each activity
 function ActivityObject(newId, newName, newDate, newTime, newPrice, isChildActivity, isInside, isDone, newUserId) {
-    this.id = newId; 
+    this.id = newId;
     this.activityName = newName;
     this.date = newDate;
     this.time = newTime;
@@ -34,6 +34,11 @@ var DocumentHandler = (function () {
 
     //The first function to be run with all the initialazing code
     function init() {
+        //Initialise the Storage connected to both Todo and users
+        TODOStorage.init();
+        //Add everything releated to sign out
+        const signOutButton = document.getElementById("sign-out");
+        signOutButton.addEventListener("click", signOut);
 
         //Adding everything releated to 'spending money'
         const spendingMoneyLbl = document.getElementById("spending-money");
@@ -41,16 +46,15 @@ var DocumentHandler = (function () {
 
         const spendingMoneyInput = document.getElementById("spending-money-input");
         const spendingMoneyButton = document.getElementById("add-spending-money");
-        spendingMoneyButton.addEventListener("click", function() {
-            if(spendingMoneyInput.value > 0) {
+        spendingMoneyButton.addEventListener("click", function () {
+            if (spendingMoneyInput.value > 0) {
                 spendingMoney = spendingMoneyInput.value;
                 spendingMoneyLbl.innerHTML = String(spendingMoney);
             }
-            
+
         })
 
-        //Initialise the Storage connected to both Todo and users
-        TODOStorage.init();
+        //Todoinit was here
 
         //Autohide finished objects THIS SORT OF WORKS
         for (let i = 0; i < allActivities.length; i++) {
@@ -58,7 +62,7 @@ var DocumentHandler = (function () {
                 let liToShow = document.getElementById("activity" + allActivities[i].id);
                 $(liToShow).hide();
             }
-        } 
+        }
 
         //'Show all' checkbox releated code
         const showHiddenListItems = document.getElementById("show-all");
@@ -80,6 +84,15 @@ var DocumentHandler = (function () {
                 }
             }
         });
+    }
+
+    function signOut() {
+        //Added code to get current user key
+        localStorage.removeItem("userKey");
+
+        //open first page
+        window.close();
+
     }
 
     //add to list of activities.
@@ -132,7 +145,7 @@ var DocumentHandler = (function () {
         $("#" + buttonId).click(function () {
             let activityNumber = String($(this)[0].id).replace(/[^0-9]/g, '');
             $("#activity" + activityNumber).hide("slow");
-           // let activityToBeRemoved;
+            // let activityToBeRemoved;
             for (let i = 0; i < allActivities.length; i++) {
                 if (allActivities[i].id == activityNumber) {
                     addToSpendingMoney(allActivities[i].price);

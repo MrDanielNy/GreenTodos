@@ -131,7 +131,13 @@ var TODOStorage = (function () {
         //Added code to get current user key
         const userKey = localStorage.getItem("userKey");
         currentUserKey = JSON.parse(userKey);
+        console.log(currentUserKey);
 
+        if(currentUserKey == null) {
+            console.log("We dont have a key");
+            alert("You must sign in");
+            window.open("user-index.html", "_self");
+        }
         //Code to get all users
         const users = localStorage.getItem("travelUsers");
         userList = JSON.parse(users);
@@ -175,6 +181,16 @@ var TODOStorage = (function () {
 
         }
 
+    }
+
+    function clearTodos() {
+        for(let i=todosList.length;i>0;i--) {
+            todosList.pop(i);
+        }
+
+        for (let i=todos.length;i>0;i++) {
+            todos.pop(i);
+        }
     }
 
     function saveTodo(activity, time, date, price, child, inside, userId) {
@@ -272,7 +288,7 @@ var TODOStorage = (function () {
         return lsTodos;
     } */
 
-    return { init, saveTodo, listTodos, getTodoById, updateTodo, deleteTodoById };
+    return { init, saveTodo, listTodos, getTodoById, updateTodo, deleteTodoById, clearTodos };
 })();
 
 
