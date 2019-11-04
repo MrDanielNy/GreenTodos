@@ -1,21 +1,4 @@
-
-/*
-    To be fixed:
-    * Skapa ett objekt som innehåller alla datatyper vi ska ha OK
-    * Skapa en lista som visar delar av denna info OK
-    * Gör den klickbar för att visa mer info i en popup samt ändra info OK
-    * Gör den klickbar, dvs. man kan klarmarkera activities OK
-    * Klickruta för att visa/dölja färdiga activities OK
-    * Spara ner i LocalStorage 
-    * Ladda från LS när man öppnar sidan 
-    * 
-    * DEBUG: Skapa en funktion som skapar exempelobjekt
-    * 
-    * Extra:
-    * Väderfunktionaliteten
-*/
-
-var masterID = 0;
+/*var masterID = 0;
 
 function MasterIDHandler(shouldAdd) {
     if (shouldAdd === true) {
@@ -24,10 +7,11 @@ function MasterIDHandler(shouldAdd) {
     } else {
         return masterID;
     }
-}
+} */
 
+//This is what makes up each activity
 function ActivityObject(newId, newName, newDate, newTime, newPrice, isChildActivity, isInside, isDone, newUserId) {
-    this.id = newId; //MasterIDHandler(true);
+    this.id = newId; 
     this.activityName = newName;
     this.date = newDate;
     this.time = newTime;
@@ -37,18 +21,21 @@ function ActivityObject(newId, newName, newDate, newTime, newPrice, isChildActiv
     this.done = isDone;
     this.userId = newUserId;
 
+    //When we create a activity it automatically removes money from spendingmoney
     DocumentHandler.removeFromSpendingMoney(newPrice);
 }
 
-var allActivities = [];
-var spendingMoney = 15000;
+var allActivities = []; //The main array that handles objects
+var spendingMoney = 15000; //The initial spending money
 
 
-//Everything related to showing the activities
+//Everything related to showing the activities in this module
 var DocumentHandler = (function () {
 
     //The first function to be run with all the initialazing code
     function init() {
+
+        //Adding everything releated to 'spending money'
         const spendingMoneyLbl = document.getElementById("spending-money");
         spendingMoneyLbl.innerHTML = spendingMoney;
 
@@ -62,17 +49,18 @@ var DocumentHandler = (function () {
             
         })
 
+        //Initialise the Storage connected to both Todo and users
         TODOStorage.init();
 
-        //Autohide done objects
+        //Autohide finished objects THIS SORT OF WORKS
         for (let i = 0; i < allActivities.length; i++) {
             if (allActivities[i].done === true) {
-                let liToShow = document.getElementById("activity" + (i + 1));
+                let liToShow = document.getElementById("activity" + allActivities[i].id);
                 $(liToShow).hide();
             }
-        }
+        } 
 
-        //Show all checkbox
+        //'Show all' checkbox releated code
         const showHiddenListItems = document.getElementById("show-all");
         showHiddenListItems.addEventListener("click", function () {
             if (showHiddenListItems.checked === true) {
@@ -93,24 +81,29 @@ var DocumentHandler = (function () {
                 }
             }
         });
-
-
     }
 
-    //add to list of activities
+    //add to list of activities.
     function addToList(newActivity) {
+        //Get the element to show a list on html page
         const listOfActivities = document.getElementById("list-of-activities");
+
+        //Add button to be able to remove each activity
         let buttonId = "remove" + (allActivities[allActivities.length - 1].id);
-        console.log(buttonId);
+
+        //Build the string that we are showing and show it/append it
         let stringToShow = "Name: " + newActivity.activityName + " Date: " + newActivity.date + " Time: " + newActivity.time + " Price: " + newActivity.price + ",- Child activity: " + newActivity.childActivity + " Outside: " + newActivity.insideActivity;
         var container = document.createElement('div');
         container.innerHTML += ("<li id='activity" + (allActivities[allActivities.length - 1].id) + "'><input type='checkbox' id='checkIsDone" + (allActivities[allActivities.length - 1].id) + "'>" + stringToShow + "<button id=" + buttonId + ">Remove Item</button></li");
         listOfActivities.appendChild(container);
+
+        //Add function so that we can mark it as done when pressing the label
         $("li").click(function () {
             let activityNumber = String($(this)[0].id).replace(/[^0-9]/g, '');
             console.log("click " + String($(this)[0].id).replace(/[^0-9]/g, ''));
             $("#activity" + activityNumber).hide("slow");
-            //allActivities[activityNumber-1].done = true;
+
+            //Update both the list in the allActivity array and the storage
             for (let i = 0; i < allActivities.length; i++) {
                 if (allActivities[i].id == activityNumber) {
                     allActivities[i].done = true;
@@ -118,10 +111,11 @@ var DocumentHandler = (function () {
                     break;
                 }
             }
-        }).children().click(function (e) {
+        }).children().click(function (e) { //so that we scope the code outside of button
             return false;
         })
 
+        //Checkbox to mark activity as finished
         $("#checkIsDone" + (allActivities[allActivities.length - 1].id)).click(function () {
             let activityNumber = String($(this)[0].id).replace(/[^0-9]/g, '');
             console.log("click " + String($(this)[0].id).replace(/[^0-9]/g, ''));
@@ -167,7 +161,6 @@ var DocumentHandler = (function () {
         const spendingMoneyLbl = document.getElementById("spending-money");
         spendingMoneyLbl.innerHTML = spendingMoney;
     }
-
 
     return {
         init,

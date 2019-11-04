@@ -209,14 +209,20 @@ var TODOStorage = (function () {
     }
 
     function updateTodo(newId) {
+        console.log("1");
         // for (let i in todos == newId) {
         for (let i = 0; i < todosList.length; i++) {
-            if (todos[i].id == newId) {
+            if (todosList[i].id == newId) {
                 console.log("Trying to change to true");
-                todos[i].done = true;
+                todosList[i].done = true;
                 //todos[i].description = description;
+            } 
+/*            const todo = todosList[i];
+            if (todo.id == newId) {
+                todosList[i].done = true;
+                break;
             }
-
+*/
         }
         saveChanges();
     }
