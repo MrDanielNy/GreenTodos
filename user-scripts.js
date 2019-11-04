@@ -23,9 +23,6 @@ var EventHandlers = (function () {
     return { init }
 })();
 
-//if there is userKey go to user manager
-//change this last 
-
 
 function goToTravelTodo() {
     //console.log("TravelTODO");
