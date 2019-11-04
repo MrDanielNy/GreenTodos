@@ -42,8 +42,6 @@ function ActivityObject(newId, newName, newDate, newTime, newPrice, isChildActiv
 
 var allActivities = [];
 var spendingMoney = 15000;
-var debugVariable1;
-var debugVariable2;
 
 
 //Everything related to showing the activities
@@ -53,6 +51,16 @@ var DocumentHandler = (function () {
     function init() {
         const spendingMoneyLbl = document.getElementById("spending-money");
         spendingMoneyLbl.innerHTML = spendingMoney;
+
+        const spendingMoneyInput = document.getElementById("spending-money-input");
+        const spendingMoneyButton = document.getElementById("add-spending-money");
+        spendingMoneyButton.addEventListener("click", function() {
+            if(spendingMoneyInput.value > 0) {
+                spendingMoney = spendingMoneyInput.value;
+                spendingMoneyLbl.innerHTML = String(spendingMoney);
+            }
+            
+        })
 
         TODOStorage.init();
 
