@@ -107,7 +107,17 @@ var DocumentHandler = (function () {
         container.innerHTML += ("<li id='activity" + (allActivities[allActivities.length - 1].id) + "'><input type='checkbox' id='checkIsDone" + (allActivities[allActivities.length - 1].id) + "'>" + stringToShow + "<button id=" + buttonId + ">Remove Item</button></li");
         listOfActivities.appendChild(container);
         $("li").click(function () {
-            alert("Populate Alexanders popup for changes!"); //Bugs out but should instead populate
+            let activityNumber = String($(this)[0].id).replace(/[^0-9]/g, '');
+            console.log("click " + String($(this)[0].id).replace(/[^0-9]/g, ''));
+            $("#activity" + activityNumber).hide("slow");
+            //allActivities[activityNumber-1].done = true;
+            for (let i = 0; i < allActivities.length; i++) {
+                if (allActivities[i].id == activityNumber) {
+                    allActivities[i].done = true;
+                    TODOStorage.updateTodo(activityNumber);
+                    break;
+                }
+            }
         }).children().click(function (e) {
             return false;
         })
