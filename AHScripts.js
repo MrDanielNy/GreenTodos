@@ -157,28 +157,6 @@ var TODOStorage = (function () {
             todosList = [];
         } 
 
-        /*
-        if (getTodoById(1)) {
-
-            var getActivity = getTodoById(1).activity;
-            div1.innerHTML = "Activity: " + getActivity;
-
-            var getTime = getTodoById(1).time;
-            div2.innerHTML = "Date of the activity: " + getTime;
-
-            var getDate = getTodoById(1).date;
-            div3.innerHTML = "Time of the activity: " + getDate;
-
-            var getPrice = getTodoById(1).price;
-            div4.innerHTML = "Price of the activity: " + getPrice;
-
-            var getChild = getTodoById(1).child;
-            div5.innerHTML = "Is is a child or adult activity: " + getChild;
-
-            var getInside = getTodoById(1).inside;
-            div6.innerHTML = "Is the activity inside or outside: " + getInside;
-        }
-        */
         //New DN code to add objects to list
         console.log("todos is " + todos.length);
         for (let i = 0; i < todos.length; i++) {
@@ -196,20 +174,6 @@ var TODOStorage = (function () {
             DocumentHandler.addToList(listObject);
 
         }
-        /* for(let i=0;i<todos.length;i++) {
-             if(getTodoById(i+2)){
-                 var newAName = getTodoById(i+2).activity;
-                 var newADate = getTodoById(i+2).date;
-                 var newATime = getTodoById(i+2).time;
-                 var newAPrice = getTodoById(i+2).price;
-                 var newAChild = getTodoById(i+2).child;
-                 var newAInside = getTodoById(i+2).inside;
-     
-                 let listObject = new ActivityObject(newAName, newADate, newATime, newAPrice, newAChild, newAInside);
-                 allActivities.push(listObject);
-                 DocumentHandler.addToList(listObject);
-             }
-         } */
 
     }
 
@@ -276,17 +240,15 @@ var TODOStorage = (function () {
             if (todo.id === id) {
                 return todo;
             }
-
         }
         return null;
     }
 
     function deleteTodoById(id) {
-        for (const i in todos) {
-            const todo = todos[i];
-
+        for(let i=0;i<todosList.length;i++) {
+            const todo = todosList[i];
             if (todo.id == id) {
-                todos.splice(i, 1);
+                todosList.splice(i, 1);
                 break;
             }
         }

@@ -45,45 +45,12 @@ var spendingMoney = 15000;
 var debugVariable1;
 var debugVariable2;
 
-/* TO BE REMOVED!
-//Debug functionality to be removed!
-var Debug = (function () {
-
-    //Create a new activity for debug purpose
-    function debugCreateActivity() {
-        //Create a new name starting from 1
-        let newName = "";
-
-        const date = new Date();
-        const month = date.getMonth() + 1;
-        let newDate = date.getDate() + "/" + month + "/" + date.getFullYear();
-        let newTime = date.getHours() + ":" + date.getMinutes();
-        let price = 1000;
-        let childActivity = false;
-        let insideActivity = false;
-        let newId = 0;
-
-        const newActivity = new ActivityObject(newName, newDate, newTime, price, childActivity, insideActivity);
-        allActivities.push(newActivity);
-        DocumentHandler.addToList(newActivity);
-    }
-
-    return { debugCreateActivity }
-})(); */
 
 //Everything related to showing the activities
 var DocumentHandler = (function () {
 
     //The first function to be run with all the initialazing code
     function init() {
-        //Load Alex code inte my own
-        //$("#alex-html").load("createActivity.html");
-
-      /*  const addDebugButton = document.getElementById("create-debug-data");
-        addDebugButton.addEventListener("click", Debug.debugCreateActivity);
-*/
-
-
         const spendingMoneyLbl = document.getElementById("spending-money");
         spendingMoneyLbl.innerHTML = spendingMoney;
 
@@ -155,7 +122,7 @@ var DocumentHandler = (function () {
         $("#" + buttonId).click(function () {
             let activityNumber = String($(this)[0].id).replace(/[^0-9]/g, '');
             $("#activity" + activityNumber).hide("slow");
-            let activityToBeRemoved;
+           // let activityToBeRemoved;
             for (let i = 0; i < allActivities.length; i++) {
                 if (allActivities[i].id == activityNumber) {
                     addToSpendingMoney(allActivities[i].price);
