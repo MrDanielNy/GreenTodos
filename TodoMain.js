@@ -66,8 +66,7 @@ var DocumentHandler = (function () {
             if (showHiddenListItems.checked === true) {
                 for (let i = 0; i < allActivities.length; i++) {
                     if (allActivities[i].done == true) {
-                        n = Number(i + 1);
-                        let liToShow = document.getElementById("activity" + (n));
+                        let liToShow = document.getElementById("activity" + allActivities[i].id);
                         console.log(liToShow);
                         $(liToShow).show();
                     }
@@ -75,7 +74,7 @@ var DocumentHandler = (function () {
             } else {
                 for (let i = 0; i < allActivities.length; i++) {
                     if (allActivities[i].done === true) {
-                        let liToShow = document.getElementById("activity" + (i + 1));
+                        let liToShow = document.getElementById("activity" + allActivities[i].id);
                         $(liToShow).hide();
                     }
                 }
@@ -120,7 +119,6 @@ var DocumentHandler = (function () {
             let activityNumber = String($(this)[0].id).replace(/[^0-9]/g, '');
             console.log("click " + String($(this)[0].id).replace(/[^0-9]/g, ''));
             $("#activity" + activityNumber).hide("slow");
-            //allActivities[activityNumber-1].done = true;
             for (let i = 0; i < allActivities.length; i++) {
                 if (allActivities[i].id == activityNumber) {
                     allActivities[i].done = true;
