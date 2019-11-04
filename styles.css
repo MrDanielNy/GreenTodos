@@ -1,0 +1,54 @@
+body {
+    background-color: lightblue;
+}
+
+#search-area {
+    position: absolute;
+    left: 30%;
+}
+#weather-box {
+    position: absolute;
+    top: 50px;
+    left: 40%;
+    background-color: rgb(147, 64, 225);
+    color: white;
+    width: 210px;
+    height: 320px;
+}
+
+#wb-city {
+    height: 10px;
+    text-align: center;
+    color: black;
+    line-height: 10px;
+}
+
+#wb-headline {
+    background-color: blueviolet;
+    border-color: black;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+
+.wb-data {
+    border-color: white;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-width: 1px;
+    font-weight: bolder;
+    font-size: large;
+    padding-left: 4px;
+    line-height: 25px;
+}
+
+.wb-weather {
+    color: deepskyblue;
+    font-weight: bolder;
+    font-size: larger;
+    text-align: center;
+    line-height: 80px;
+}

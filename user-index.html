@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Travel-login</title>
+    <link rel="stylesheet" href="user-style.css">
+</head>
+
+<body>
+    <h1>Travel Todo</h1>
+    <button id="sign-in-button" class="button">Sign in</button>
+    <button id="reg-new-user-button" class="button">New user</button>
+    <button id="make-users" class="button">Debug make users</button>
+    <div id="first-page-modal">
+        <div id="sign-in-pop">
+            <div id="close-signin" class="close-window">+</div>
+            <h2>Travel Todo</h2>
+            <form action="" id="sign-in-data" method="POST">
+                <input type="text" placeholder="Username" class="input" id="username-input">
+                <input type="password" placeholder="Password" class="input" id="password-input">
+                <button class="button" id="submit-password">Sign in</button>
+            </form>
+            <button class="button" id="forgot-password">I forgot my password</button>
+        </div>
+        <div id="new-user-pop">
+            <div id="close-new-user" class="close-window">+</div>
+            <h2>Register new user</h2>
+            <form action="" id="new-user-form">
+                <input type="text" placeholder="Username" class="input" id="new-firstname-input">
+                <input type="password" placeholder="password" class="input" id="new-password-input">
+                <input type="password" placeholder="Repeat password" class="input" id="repeat-password-input">
+                <button class="button" id="new-user-request-button">Register</button>
+            </form>
+        </div>
+        <div id="forgot-password-popup">
+            <div id="close-forgot-password" class="close-window">+</div>
+            <h2>Receive password</h2>
+            <form action="" id="forgot-password-form">
+                <input type="text" placeholder="username" class="input" id="forgetfull-user-input">
+                <button class="button" id="forgot-password-send">Send</button>
+            </form>
+        </div>
+        <div id="user-info-div">
+            <div id="change-user-popup">
+                <button class="button" id="signout-button">Sign out</button>
+                <button class="button" id="go-to-traveltodo">Go to travelTodo</button>
+                <form action="" id="handle-user-form">
+                    <p>Your username</p>
+                    <input type="text" placeholder="Write username here" class="input" id="change-username-input">
+                    <p>Your firstname</p>
+                    <input type="text" placeholder="Write first name here" class="input" id="change-firstname-input">
+                    <p>Your lastname</p>
+                    <input type="text" placeholder="Write last name here" class="input" id="change-lastname-input">
+                    <p>Your email adress</p>
+                    <input type="text" placeholder="Write email here" class="input" id="change-email-input">
+                    <button class="button" id="make-changes-button">Make changes</button>
+                    <button class="button" id="change-password-button">Change password</button>
+                </form>
+            </div>
+            <div id="change-password-popup">
+                <div id="close-change-password" class="close-window">+</div>
+                <form action="" id="change-password-form">
+                    <input type="password" class="input" id="old-password-input" placeholder="Old password">
+                    <input type="password" class="input" id="new-password-input" placeholder="New password">
+                    <input type="password" class="input" id="change-password-input" placeholder="Repeat password">
+                    <button class="button" id="make-change-request">Change password</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="user-scripts.js"></script>
+</body>
+
+</html>

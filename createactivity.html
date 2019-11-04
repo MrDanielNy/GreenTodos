@@ -1,0 +1,142 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Gruppuppgift</title>
+    <meta name="description" content="Gruppuppgift">
+    <meta name="Gröna gruppen" content="SitePoint">
+</head>
+
+<body>
+
+    <style>
+        /* Button used to open the contact form - fixed at the bottom of the page */
+        .open-button {
+            background-color: #555;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 0.8;
+            position: fixed;
+            bottom: 0px;
+            right: 0px;
+            width: 280px;
+        }
+
+        /* The popup form - hidden by default */
+        .form-popup {
+            display: none;
+            position: fixed;
+            bottom: 0px;
+            right: 0px;
+            border: 3px solid #f1f1f1;
+            z-index: 9;
+        }
+
+        /* Add styles to the form container */
+        .form-container {
+            max-width: 300px;
+            padding: 10px;
+            background-color: white;
+        }
+
+        /* Full-width input fields */
+        .form-container input[type=text],
+        .form-container input[type=password] {
+            width: 90%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        /* When the inputs get focus, do something */
+        .form-container input[type=text]:focus,
+        .form-container input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        /* Set a style for the submit/login button */
+        .form-container .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        /* Add a red background color to the cancel button */
+        .form-container .cancel {
+            background-color: red;
+        }
+
+        /* Add some hover effects to buttons */
+        .form-container .btn:hover,
+        .open-button:hover {
+            opacity: 1;
+        }
+    </style>
+    <h1>Nemo mortalium omnibus horis sapit.</h1>
+    <p>"Of mortal men, none is wise at all times."</p>
+
+    <button class="open-button" onclick="openForm()">Add activity</button>
+
+    <div class="form-popup" id="createActivity">
+        <form action=todomain.html class="form-container">
+            <h1>Add activity</h1>
+
+            <label for="Activity"><b>Name of the activity:</b></label>
+            <input id="inputActivity" type="text" placeholder="Activity" required>
+
+            <label for="Date"><b>Date of the activity:</b></label>
+            <p></p>
+            <input id="inputDate" type="date" placeholder="Date" required>
+            <p></p>
+            <label for="Time"><b>Time for the activity:</b></label>
+            <p></p>
+            <input id="inputTime" type="time" required>
+            <p></p>
+            <label for="Price"><b>Price for the activity:</b></label>
+            <input id="inputNumber" type="number" required>
+            <p></p>
+            <label for="Checkbox"><b>Is it a child activity?</b></label>
+            <p></p>
+            [Mark if true]<input id="inputChild" type="checkbox" id="check">
+            <p></p>
+            <label for="Checkbox"><b>Is the activity inside?</b></label>
+            <p></p>
+            [Mark if true]<input id="inputInside" type="checkbox" id="check">
+            <p></p>
+            <button type="submit" class="btn" onclick="addActivity()">Submit</button>
+            <button type="submit" class="btn cancel" onclick="closeForm()">Cancel</button>
+        </form>
+    </div>
+
+    <fieldset>
+        <legend>Abrahams problem</legend>
+        <div id=div1></div>
+        <div id=div2></div>
+        <div id=div3></div>
+        <div id=div4></div>
+        <div id=div5></div>
+        <div id=div6></div>
+    </fieldset>
+
+    
+
+
+    <script src="AHScripts.js"></script>
+</body>
+
+
+
+
+</html>
