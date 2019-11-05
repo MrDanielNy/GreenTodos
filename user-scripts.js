@@ -16,7 +16,7 @@ var EventHandlers = (function () {
         $("#change-password-button").click(UserManager.changePasswordPop);
         $("#close-change-password").click(UserManager.changePasswordClose);
         $("#make-change-request").click(UserManager.changeUserPassword);
-        $("#go-to-mananger-button").click(function() {SignInModul.checkPassword(true)});
+        $("#go-to-mananger-button").click(function () { SignInModul.checkPassword(true) });
 
     }
 
@@ -109,7 +109,7 @@ var SignInModul = (function () {
         localStorage.setItem("userKey", JSON.stringify(travelUsers[index].ID))
 
         $("#password-input").val("");
-        if(goToUser){
+        if (goToUser) {
             UserManager.userInfoManager()
             return;
         }
@@ -168,11 +168,11 @@ var NewUserModul = (function () {
         var newPassword = $("#new-password-input").val()
         var repeatPassword = $("#repeat-password-input").val()
 
-        if(newUserName.length < 4){
+        if (newUserName.length < 4) {
             alert("username must be atleast 4 characters")
             return;
         }
-        if(newPassword.length < 4){
+        if (newPassword.length < 4) {
             alert("password must be atleast 4 characters")
             return;
         }
@@ -254,16 +254,20 @@ var UserManager = (function () {
                 break;
             }
         }
+        if (newUserUser.length < 4) {
+            alert("username must be atleast 4 characters")
+            return;
+        }
         //Check userName
         for (user of travelUsers) {
             if (user.userName === newUserUser && user.ID !== userKey) {
                 alert("user name already taken");
-                userInfoManager();        
+                userInfoManager();
                 return;
             }
         }
-        for(user of travelUsers){
-            if(user.ID === userKey){
+        for (user of travelUsers) {
+            if (user.ID === userKey) {
                 user.userName = newUserUser;
                 break;
             }
@@ -281,19 +285,23 @@ var UserManager = (function () {
         var oldPassword = $("#old-password-input").val();
         var newPassword = $("#newchange-password-input").val();
         var repeatPassword = $("#change-password-input").val();
-        
-        for(user of travelUsers){
-            if(user.ID === userKey && user.password !== oldPassword){
+
+        for (user of travelUsers) {
+            if (user.ID === userKey && user.password !== oldPassword) {
                 alert("Wrong password!");
                 return;
             }
         }
-        if(newPassword !== repeatPassword){
+        if (newPassword.length < 4) {
+            alert("password must be atleast 4 characters")
+            return;
+        }
+        if (newPassword !== repeatPassword) {
             alert("new passwords doesnt match");
             return;
         }
-        for(user of travelUsers){
-            if(user.ID === userKey){
+        for (user of travelUsers) {
+            if (user.ID === userKey) {
                 user.password = newPassword;
                 break;
             }
