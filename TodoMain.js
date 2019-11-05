@@ -106,7 +106,7 @@ var DocumentHandler = (function () {
         //Build the string that we are showing and show it/append it
         let stringToShow = "Name: " + newActivity.activityName + " Date: " + newActivity.date + " Time: " + newActivity.time + " Price: " + newActivity.price + ":- Child activity: " + newActivity.childActivity + " Outside: " + newActivity.insideActivity;
         var container = document.createElement('div');
-        container.innerHTML += ("<li id='activity" + (allActivities[allActivities.length - 1].id) + "'><input class='tooltip' type='checkbox' id='checkIsDone" + (allActivities[allActivities.length - 1].id) + "'></input>" + stringToShow + "<button id=" + buttonId + ">Remove Item</button></li>");
+        container.innerHTML += ("<li id='activity" + (allActivities[allActivities.length - 1].id) + "'><input type='checkbox' id='checkIsDone" + (allActivities[allActivities.length - 1].id) + "'></input>" + stringToShow + "<button class='button-block' id=" + buttonId + ">Remove Item</button></li>");
         listOfActivities.appendChild(container);
 
         //Checkbox to mark activity as finished
@@ -149,7 +149,10 @@ var DocumentHandler = (function () {
 
     //Add to spending money
     function addToSpendingMoney(sumToBeAdded) {
-        spendingMoney += sumToBeAdded;
+        let currentMoney = Number(spendingMoney);
+        console.log(currentMoney);
+        currentMoney += Number(sumToBeAdded);
+        spendingMoney = currentMoney;
         const spendingMoneyLbl = document.getElementById("spending-money");
         spendingMoneyLbl.innerHTML = String(spendingMoney);
     }
