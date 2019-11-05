@@ -103,28 +103,10 @@ var DocumentHandler = (function () {
         let buttonId = "remove" + (allActivities[allActivities.length - 1].id);
 
         //Build the string that we are showing and show it/append it
-        let stringToShow = "Name: " + newActivity.activityName + " Date: " + newActivity.date + " Time: " + newActivity.time + " Price: " + newActivity.price + ",- Child activity: " + newActivity.childActivity + " Outside: " + newActivity.insideActivity;
+        let stringToShow = "Name: " + newActivity.activityName + " Date: " + newActivity.date + " Time: " + newActivity.time + " Price: " + newActivity.price + ":- Child activity: " + newActivity.childActivity + " Outside: " + newActivity.insideActivity;
         var container = document.createElement('div');
         container.innerHTML += ("<li id='activity" + (allActivities[allActivities.length - 1].id) + "'><input type='checkbox' id='checkIsDone" + (allActivities[allActivities.length - 1].id) + "'>" + stringToShow + "<button id=" + buttonId + ">Remove Item</button></li");
         listOfActivities.appendChild(container);
-
-        //Add function so that we can mark it as done when pressing the label
-        $("li").click(function () {
-            let activityNumber = String($(this)[0].id).replace(/[^0-9]/g, '');
-            console.log("click " + String($(this)[0].id).replace(/[^0-9]/g, ''));
-            $("#activity" + activityNumber).hide("slow");
-
-            //Update both the list in the allActivity array and the storage
-            for (let i = 0; i < allActivities.length; i++) {
-                if (allActivities[i].id == activityNumber) {
-                    allActivities[i].done = true;
-                    TODOStorage.updateTodo(activityNumber);
-                    break;
-                }
-            }
-        }).children().click(function (e) { //so that we scope the code outside of button
-            return false;
-        })
 
         //Checkbox to mark activity as finished
         $("#checkIsDone" + (allActivities[allActivities.length - 1].id)).click(function () {
