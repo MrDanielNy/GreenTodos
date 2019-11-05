@@ -104,6 +104,7 @@ var TODOStorage = (function () {
             alert("You must sign in");
             window.open("user-index.html", "_self");
         }
+
         //Code to get all users
         const users = localStorage.getItem("travelUsers");
         userList = JSON.parse(users);
@@ -111,6 +112,7 @@ var TODOStorage = (function () {
         console.log("We are sending variable " + currentUserKey);
         debugVariable1 = getUserById(currentUserKey);
 
+        //
         let helloMsg = document.getElementById("hello-message");
         helloMsg.innerHTML = "Hello " + debugVariable1.firstName;
 
