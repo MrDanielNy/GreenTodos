@@ -34,8 +34,6 @@ var DocumentHandler = (function () {
 
     //The first function to be run with all the initialazing code
     function init() {
-        //Initialise the Storage connected to both Todo and users
-        TODOStorage.init();
         //Add everything releated to sign out
         const signOutButton = document.getElementById("sign-out");
         signOutButton.addEventListener("click", signOut);
@@ -54,7 +52,8 @@ var DocumentHandler = (function () {
 
         })
 
-        //Todoinit was here
+        //Initialise the Storage connected to both Todo and users
+        TODOStorage.init();
 
         //Autohide finished objects THIS SORT OF WORKS
         for (let i = 0; i < allActivities.length; i++) {
