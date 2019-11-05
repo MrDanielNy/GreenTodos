@@ -132,7 +132,6 @@ var DocumentHandler = (function () {
                     addToSpendingMoney(allActivities[i].price);
                     allActivities.splice(i, 1);
                     TODOStorage.deleteTodoById(activityNumber);
-                    console.log(activityNumber);
                     break;
                 }
             }
