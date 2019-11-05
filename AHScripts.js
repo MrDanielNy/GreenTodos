@@ -1,4 +1,5 @@
-//Hejsan
+//Script to handle storage of TODOS and add activities
+
 function openForm() {
     document.getElementById("createActivity").style.display = "block";
 }
@@ -33,7 +34,6 @@ var APopupHandler = (function () {
             document.getElementById("createActivity").reset();
             document.getElementById("createActivity").style.display = "none";
         }
-
     }
 
     let setActivity;
@@ -51,8 +51,8 @@ var APopupHandler = (function () {
         const date = inputDateFromForm.value;
         const time = inputTimeFromForm.value;
         const number = inputPriceFromForm.value;
-        let inside = false; //Changed by DN
-        let child = false; //Changed by DN
+        let inside = false; 
+        let child = false; 
 
         console.log(activity);
         if (inputChild.checked == true) {
@@ -76,19 +76,7 @@ var APopupHandler = (function () {
         setChild = child;
         setInside = inside;
 
-        //localStorage.setItem('testObject', JSON.stringify(testObject));
-
         if (date && time && number && activity) {
-            /*
-            console.log(setTime);
-            localStorage.clear();
-            localStorage.setItem("Activity", JSON.stringify(setActivity));
-            localStorage.setItem("Time", JSON.stringify(setTime));
-            localStorage.setItem("Date", JSON.stringify(setDate));
-            localStorage.setItem("Price", JSON.stringify(setNumber));
-            localStorage.setItem("Child", JSON.stringify(setChild));
-            localStorage.setItem("Inside", JSON.stringify(setInside));*/
-
             TODOStorage.saveTodo(setActivity, setTime, setDate, setNumber, setChild, setInside, currentUserKey);
         }
     }
@@ -99,28 +87,6 @@ var APopupHandler = (function () {
         uncheck
     };
 })();
-
-/* TO BE REMOVED!
-function getTodoById(id) {
-    for (const i in todos) {
-        const todo = todos[i];
-
-        if (todo.id === id) {
-            return todo;
-        }
-
-    }
-    return null;
-}
-
-
-function callLog() {
-
-    console.log(setTime);
-    localStorage.setItem("Time:", setTime)
-    localStorage.setItem("Date:", setDate)
-}
-*/
 
 var TODOStorage = (function () {
     var todosList = [];
@@ -226,19 +192,11 @@ var TODOStorage = (function () {
 
     function updateTodo(newId) {
         console.log("1");
-        // for (let i in todos == newId) {
         for (let i = 0; i < todosList.length; i++) {
             if (todosList[i].id == newId) {
                 console.log("Trying to change to true");
                 todosList[i].done = true;
-                //todos[i].description = description;
             } 
-/*            const todo = todosList[i];
-            if (todo.id == newId) {
-                todosList[i].done = true;
-                break;
-            }
-*/
         }
         saveChanges();
     }
@@ -281,12 +239,6 @@ var TODOStorage = (function () {
         const lsTodos = JSON.stringify(todosList)
         localStorage.setItem('TODOS', lsTodos);
     }
-
-    /*
-    function returnTodo() {
-        const lsTodos = JSON.stringify(todos);
-        return lsTodos;
-    } */
 
     return { init, saveTodo, listTodos, getTodoById, updateTodo, deleteTodoById, clearTodos };
 })();
