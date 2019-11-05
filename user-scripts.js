@@ -1,5 +1,6 @@
 var EventHandlers = (function () {
     function init() {
+        $("#make-users").hide();
         $("#sign-in-button").click(SignInModul.signInPop);
         $("#close-signin").click(SignInModul.signInClose);
         $("#make-users").click(TestModule.createRandomUserObjects);
