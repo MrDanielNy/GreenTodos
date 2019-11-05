@@ -306,6 +306,9 @@ var UserManager = (function () {
                 break;
             }
         }
+        localStorage.setItem("travelUsers", JSON.stringify(travelUsers));
+        userInfoManager();
+
     }
 
     return {
