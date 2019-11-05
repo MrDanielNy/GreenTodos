@@ -3,7 +3,7 @@ var EventHandlers = (function () {
         $("#sign-in-button").click(SignInModul.signInPop);
         $("#close-signin").click(SignInModul.signInClose);
         $("#make-users").click(TestModule.createRandomUserObjects);
-        $("#submit-password").click(SignInModul.checkPassword);
+        $("#submit-password").click(function(){SignInModul.checkPassword(false)});
         $("#reg-new-user-button").click(NewUserModul.newUserPop);
         $("#close-new-user").click(NewUserModul.newUserClose);
         $("#new-user-request-button").click(NewUserModul.makeNewUser);
@@ -16,6 +16,7 @@ var EventHandlers = (function () {
         $("#change-password-button").click(UserManager.changePasswordPop);
         $("#close-change-password").click(UserManager.changePasswordClose);
         $("#make-change-request").click(UserManager.changeUserPassword);
+        $("#go-to-mananger-button").click(function () { SignInModul.checkPassword(true) });
 
     }
 
@@ -85,7 +86,7 @@ var SignInModul = (function () {
         $("#sign-in-pop").show();
     }
 
-    function checkPassword() {
+    function checkPassword(goToUser) {
         event.preventDefault();
         //indexNr in travelUsers if no match index is -1
         let index = -1;
@@ -108,7 +109,10 @@ var SignInModul = (function () {
         localStorage.setItem("userKey", JSON.stringify(travelUsers[index].ID))
 
         $("#password-input").val("");
-
+        if (goToUser) {
+            UserManager.userInfoManager()
+            return;
+        }
         goToTravelTodo();
 
     }
@@ -164,9 +168,18 @@ var NewUserModul = (function () {
         var newPassword = $("#new-password-input").val()
         var repeatPassword = $("#repeat-password-input").val()
 
+        if (newUserName.length < 4) {
+            alert("username must be atleast 4 characters")
+            return;
+        }
+        if (newPassword.length < 4) {
+            alert("password must be atleast 4 characters")
+            return;
+        }
+
         for (let user of travelUsers) {
             if (user.userName === newUserName) {
-                alert("username already exicts");
+                alert("username already exists");
                 return;
             }
         }
@@ -241,16 +254,20 @@ var UserManager = (function () {
                 break;
             }
         }
+        if (newUserUser.length < 4) {
+            alert("username must be atleast 4 characters")
+            return;
+        }
         //Check userName
         for (user of travelUsers) {
             if (user.userName === newUserUser && user.ID !== userKey) {
                 alert("user name already taken");
-                userInfoManager();        
+                userInfoManager();
                 return;
             }
         }
-        for(user of travelUsers){
-            if(user.ID === userKey){
+        for (user of travelUsers) {
+            if (user.ID === userKey) {
                 user.userName = newUserUser;
                 break;
             }
@@ -261,10 +278,37 @@ var UserManager = (function () {
     }
     function changeUserPassword() {
         event.preventDefault();
-        console.log("change user password")
+        //console.log("change user password")
         userKey = JSON.parse(localStorage.getItem("userKey"));
         travelUsers = JSON.parse(localStorage.getItem("travelUsers"));
         //check password input and make changes..
+        var oldPassword = $("#old-password-input").val();
+        var newPassword = $("#newchange-password-input").val();
+        var repeatPassword = $("#change-password-input").val();
+
+        for (user of travelUsers) {
+            if (user.ID === userKey && user.password !== oldPassword) {
+                alert("Wrong password!");
+                return;
+            }
+        }
+        if (newPassword.length < 4) {
+            alert("password must be atleast 4 characters")
+            return;
+        }
+        if (newPassword !== repeatPassword) {
+            alert("new passwords doesnt match");
+            return;
+        }
+        for (user of travelUsers) {
+            if (user.ID === userKey) {
+                user.password = newPassword;
+                break;
+            }
+        }
+        localStorage.setItem("travelUsers", JSON.stringify(travelUsers));
+        userInfoManager();
+
     }
 
     return {
