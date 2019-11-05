@@ -104,7 +104,7 @@ var DocumentHandler = (function () {
         let buttonId = "remove" + (allActivities[allActivities.length - 1].id);
 
         //Build the string that we are showing and show it/append it
-        let stringToShow = "Name: " + newActivity.activityName + " Date: " + newActivity.date + " Time: " + newActivity.time + " Price: " + newActivity.price + ":- Child activity: " + newActivity.childActivity + " Outside: " + newActivity.insideActivity;
+        let stringToShow = "<b>Name: </b>" + newActivity.activityName + " <b>Date: </b>" + newActivity.date + " <b>Time: </b>" + newActivity.time + " <b>Price: </b>" + newActivity.price + ":- <b>Child activity: </b>" + newActivity.childActivity + " <b>Outside: </b>" + newActivity.insideActivity;
         var container = document.createElement('div');
         container.innerHTML += ("<li id='activity" + (allActivities[allActivities.length - 1].id) + "'><input type='checkbox' id='checkIsDone" + (allActivities[allActivities.length - 1].id) + "'></input>" + stringToShow + "<button class='button-block' id=" + buttonId + ">Remove Item</button></li>");
         listOfActivities.appendChild(container);
