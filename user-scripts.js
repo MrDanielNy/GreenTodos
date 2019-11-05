@@ -3,7 +3,7 @@ var EventHandlers = (function () {
         $("#sign-in-button").click(SignInModul.signInPop);
         $("#close-signin").click(SignInModul.signInClose);
         $("#make-users").click(TestModule.createRandomUserObjects);
-        $("#submit-password").click(SignInModul.checkPassword);
+        $("#submit-password").click(function(){SignInModul.checkPassword(false)});
         $("#reg-new-user-button").click(NewUserModul.newUserPop);
         $("#close-new-user").click(NewUserModul.newUserClose);
         $("#new-user-request-button").click(NewUserModul.makeNewUser);
